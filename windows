@@ -1,0 +1,3 @@
+#!/bin/bash
+
+x86_64-w64-mingw32-gcc -static -o windows-client.exe -DWINDOWS client.c -g -O3 -Werror -fPIE -D_FORTIFY_SOURCE=2 -fstack-protector-all -pie -lws2_32

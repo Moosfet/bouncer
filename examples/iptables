@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# set default policy to "drop"
+iptables -t filter -P INPUT DROP
+
+# flush input table
+iptables -t filter -F INPUT
+
+# allow ICMP packets which are all harmless stuff like "ping"
+iptables -t filter -A INPUT -p icmp -j ACCEPT
+
+# allow packets related to any established connection
+iptables -t filter -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# allow packets from localhost and LAN
+iptables -t filter -A INPUT -s 127.0.0.1/8 -j ACCEPT
+iptables -t filter -A INPUT -s 192.168.1.0/24 -j ACCEPT
+
+# bouncer-specific lines
+iptables -t filter -A INPUT -p udp --dport 730 -j ACCEPT
+iptables -N WHITELIST
+iptables -F WHITELIST
+iptables -t filter -A INPUT -j WHITELIST
+
+# ports that should be open to everyone
+iptables -t filter -A INPUT -p tcp --dport 25565 -j ACCEPT
+
+# list tables for inspection
+iptables -n -t filter -L INPUT

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# This just checks if a similar rule already exists, and if not, adds the rule.
+
+if ! iptables -C WHITELIST -s "$1" -j ACCEPT 2>/dev/null; then
+     iptables -A WHITELIST -s "$1" -j ACCEPT
+fi

@@ -1,0 +1,7 @@
+The idea with these is that you would run `iptables` to set up the rules and
+then the `whitelist` would add rules to whitelist IP addresses.
+
+Note that, if you have IPv6, your services may still be exposed through it,
+so I wouldn't treat these scripts as more than an example.  For someone like
+me who can't be bothered to buy a new router in order to have IPv6, however,
+these scripts are all that I need.

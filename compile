@@ -1,0 +1,5 @@
+#!/bin/bash
+
+gcc -o bouncer-server server.c -g -O3 -Werror -fsanitize=address -fPIE -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wl,-z,relro,-z,now,-z,noexecstack -pie
+gcc -o bouncer-client client.c -g -O3 -Werror -fsanitize=address -fPIE -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wl,-z,relro,-z,now,-z,noexecstack -pie
+gcc -o bouncer-passwd passwd.c -g -O3 -Werror -fsanitize=address -fPIE -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wl,-z,relro,-z,now,-z,noexecstack -pie
