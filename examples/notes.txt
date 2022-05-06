@@ -1,5 +1,6 @@
-The idea with these is that you would run `iptables` to set up the rules and
-then the `whitelist` would add rules to whitelist IP addresses.
+The idea with these is that you run `iptables` to set up the rules which block
+inbound connections by default, then the `whitelist` script adds more rules to
+a separate rule chain which whitelists the IP addresses.
 
 Note that, if you have IPv6, your services may still be exposed through it,
 so I wouldn't treat these scripts as more than an example.  For someone like
